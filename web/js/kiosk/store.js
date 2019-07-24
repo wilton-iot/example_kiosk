@@ -27,7 +27,6 @@ define(function(require) {
         strict: true,
 
         actions: {
-            subscribeForNotifications: require("./common/actions/subscribeForNotifications")
         },
 
         modules: {

@@ -16,9 +16,10 @@
 
 define([
     "vue",
-    "vue-require/store/dispatch",
+    "vue-require/websocket/withSock",
+    "json!/kiosk/server/views/config",
     "text!./app.html"
-], function(Vue, dispatch, template) {
+], function(Vue, withSock, conf, template) {
     "use strict";
 
     return Vue.component("App", {
@@ -28,8 +29,12 @@ define([
         },
 
         created: function() {
-            // note: config parameters should be used here
-            dispatch("subscribeForNotifications", "ws://127.0.0.1:8080/kiosk/server/views/websocket");
+            // no networking here, only supplying ws options 
+            withSock(null, {
+                url: conf.wsUrl
+                // other possible options are forwarded to wsClient
+                // https://wilton-iot.github.io/wilton/docs/html/namespaceweb__wsClient.html#a9a7f2f55ba84b066190bb357f45a7d36
+            });
         },
 
         methods: {

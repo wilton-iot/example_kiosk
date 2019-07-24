@@ -17,9 +17,10 @@
 define([
     "module",
     "vue-require/router/push",
+    "vue-require/store/dispatch",
     "kiosk/components/header/Header",
     "text!./greetings.html"
-], function (module, push, Header, template) {
+], function (module, push, dispatch, Header, template) {
     "use strict";
 
     return {
@@ -28,6 +29,10 @@ define([
         components: {
             "kiosk-header": new Header("Greetings",
                     "Landing page with a detailed description of the important business process")
+        },
+
+        created: function() {
+            dispatch("greetings/subscribeForNotifications");
         },
 
         data: function() {

@@ -14,21 +14,26 @@
  * limitations under the License.
  */
 
-define(function(require) {
+define([
+    "wilton/web/wsClient",
+    "vue-require/websocket/withSock"
+], function(wsClient, withSock) {
     "use strict";
 
-    return {
-        namespaced: true,
-
-        actions: {
-            subscribeForNotifications: require("./actions/subscribeForNotifications")
-        },
-
-        mutations: {
-        },
-
-        state: {
-        }
-
+    return function(context, cb) {
+        withSock(function(err, sock) {
+            if (null !== err) {
+                console.error(err);
+                return;
+            }
+            wsClient.subscribe(sock, "kiosk-server-notification", function(err, payload) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log("Server notification received:");
+                    console.log(payload);
+                }
+            });
+        });
     };
 });

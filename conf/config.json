@@ -16,13 +16,17 @@
         "windowHeight": 600
     },
 
+    "web": {
+        "wsUrl": "ws://127.0.0.1:8080/kiosk/server/views/websocket"
+    },
+
     "logging": {
         "appenders": [{
             "appenderType": "CONSOLE",
             "thresholdLevel": "DEBUG"
         }],
         "loggers": {
-            "staticlib": "WARN",
+            "staticlib": "INFO",
             "wilton": "INFO",
             "kiosk": "DEBUG"
         }

@@ -49,6 +49,7 @@ define([
                 ipAddress: conf.server.ipAddress,
                 tcpPort: conf.server.tcpPort,
                 views: [
+                    "kiosk/server/views/config",
                     "kiosk/server/views/notify",
                     "kiosk/server/views/websocket"
                 ],
